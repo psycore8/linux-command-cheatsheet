@@ -35,6 +35,17 @@
 | tar xfz u-web-my4.tgz | extract file |
 | whereis | Output binary directory |
 
+### Log Management
+
+#### Debian 12
+
+- `journalctl`: complete logs
+- `journalctl -f`: logs in live view
+- `jounalctl -u servicename`: log for a specified service name
+- `journalctl -b`: log of the last boot
+- `journalctl --since=yesterday`: log since yesterday
+- `journalctl --since=Sep 05 12:00:00`: log since time stamp
+
 ### Package management
 
 | Command                   | Comment                    |
