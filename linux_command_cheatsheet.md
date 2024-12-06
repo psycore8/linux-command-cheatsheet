@@ -1,9 +1,6 @@
+# Linux / Debian Command-Cheatsheet
 
-# Linux Commands Cheatsheet
-
-## Command list
-
-### User Management
+## 1.0 User Management
 
 | Command | Comment |
 |----|----|
@@ -16,37 +13,59 @@
 | userdel \<username\> | delete user |
 | whoami | Output current user |
 
-### File and directory management
+## 2.0 File and Directory Management
 
-| Command | Comment |
-|----|----|
-| chgrp \<user\> \<datei/ordner\> | Change group |
-| chown \<user\> \<datei/ordner\> | Change owner |
-| cp -r newdir/\* olddir/ | Copy files recursively |
-| 'cp' -rf dir/{\*,.??\*} /dir/ | hidden files and aliased cp -i will be copied |
-| du -hs \<dir\> | specify directory size |
-| du -h \* \| sort -hr \> /home/user/filelist.txt | File list sorted by size |
-| echo bla \> 1.txt | Create file 1.txt with content bla |
-| echo blabla \>\> 1.txt | Append blabla to file 1.txt |
-| ls | List directory contents |
-| ls -la dir | List directory contents with user information |
-| ls -lahS $(find / -type f -size +100000k) | search for files \> 100MB |
-| pwd | Output working directory |
-| tar xfz u-web-my4.tgz | extract file |
-| whereis | Output binary directory |
+| Command                                         | Comment                                       |
+| ----------------------------------------------- | --------------------------------------------- |
+| cat textfile.txt \| awk '{print $1}'            | returns column 1 from textfile                |
+| chgrp \<user\> \<datei/ordner\>                 | Change group                                  |
+| chown \<user\> \<datei/ordner\>                 | Change owner                                  |
+| cp -r newdir/\* olddir/                         | Copy files recursively                        |
+| 'cp' -rf dir/{\*,.??\*} /dir/                   | hidden files and aliased cp -i will be copied |
+| du -hs \<dir\>                                  | specify directory size                        |
+| du -h \* \| sort -hr \> /home/user/filelist.txt | File list sorted by size                      |
+| echo bla \> 1.txt                               | Create file 1.txt with content bla            |
+| echo blabla \>\> 1.txt                          | Append blabla to file 1.txt                   |
+| ls                                              | List directory contents                       |
+| ls -la dir                                      | List directory contents with user information |
+| ls -lahS $(find / -type f -size +100000k)       | search for files \> 100MB                     |
+| pwd                                             | Output working directory                      |
+| tree                                            | list (Sub)-Directories in a tree view         |
+| whereis                                         | Output binary directory                       |
 
-### Log Management
+### 2.1 File Compression
 
-#### Debian 12
+###### tar
+- Compress: `tar cfv [Filename].tar [Directory1] [Directory2] [File1] [File2]`
+- Decompress: `tar xfv [Filename].tar`
+- List: `tar tfv [Filename].tar`
 
-- `journalctl`: complete logs
-- `journalctl -f`: logs in live view
-- `jounalctl -u servicename`: log for a specified service name
-- `journalctl -b`: log of the last boot
-- `journalctl --since=yesterday`: log since yesterday
-- `journalctl --since=Sep 05 12:00:00`: log since time stamp
+###### gz
+- Compress: `tar cfvz [Filename].tar.gz [Directory1] [file1]`
+- Decompress: `tar xfvz [Filename].tar.gz`
 
-### Package management
+###### bz2
+- Compress: `tar cfvj [Filename].tar.bz2 [Directory1] [file1]`
+- Decompress: `tar xfvj [Filename].tar.bz2`
+
+###### zip
+- Compress files: `zip [Filename].zip [file1] [file2]`
+- Compress directory: `zip -r [Filename].zip [directory1]`
+- Decompress: `unzip [Filename].zip`
+- Decompress and Overwrite: `unzip -o [Filename].zip -d dir/`
+
+## 3.0 Log Management
+
+### 3.1 Debian 12
+
+- `journalctl`: komplettes Systemprotokoll
+- `journalctl -f`: Protokoll in Echtzeit
+- `jounalctl -u servicename`: Protokoll für einen bestimmten Dienst
+- `journalctl -b`: Protokoll des letzten Boots
+- `journalctl --since=yesterday`: Protokoll seit gestern
+- `journalctl --since=Sep 05 12:00:00`: Protokoll ab Zeitvorgabe
+
+## 4.0 Package management
 
 | Command                   | Comment                    |
 |---------------------------|----------------------------|
@@ -55,90 +74,83 @@
 | apt-get update            | update package cache       |
 | apt-get upgrade           | upgrade installed packages |
 
-### System Management
+## 5.0 System Management
 
-| Command                        | Comment                             |
-|--------------------------------|-------------------------------------|
-| cat /proc/cpuinfo              | cpuinfo                             |
-| cat /proc/meminfo              | RAM Info                            |
-| cat /proc/version              | Deb Version                         |
-| crontab -e                     | Edit cronjobs                       |
-| crontab -l                     | Listen to cronjobs                  |
-| date +%s                       | Output Unix time                    |
-| date -d @1234631164            | Output Unix time in normal time     |
-| df -h                          | free disc space                     |
-| dpkg-reconfigure locales -plow | Language settings                   |
-| dpkg-reconfigure tzdata        | Time zone settings                  |
-| kill -6 \<PID\> [^1]           | SIGABRT - Cancel process            |
-| kill -9 \<PID\>                | SIGKILL - Terminate process         |
-| kill -15 \<PID\>               | SIGTERM - terminate process cleanly |
-| kill -18 \<PID\>               | SIGCONT - Continue process          |
-| kill -19 \<PID\>               | SIGSTOP - Stop process              |
-| mount -o remount -rw /         | release read-only file system       |
-| ps                             | process list                        |
-| ps -aux                        | detailed process list               |
+| Command                         | Comment                                                                                                                                                                  |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| cat /proc/cpuinfo               | cpuinfo                                                                                                                                                                  |
+| cat /proc/meminfo               | RAM Info                                                                                                                                                                 |
+| cat /proc/version               | Deb Version                                                                                                                                                              |
+| crontab -e                      | Edit cronjobs                                                                                                                                                            |
+| crontab -l                      | Listen to cronjobs                                                                                                                                                       |
+| date +%s                        | Output Unix time                                                                                                                                                         |
+| date -d @1234631164             | Output Unix time in normal time                                                                                                                                          |
+| df -h                           | free disc space                                                                                                                                                          |
+| dpkg-reconfigure locales -plow  | Language settings                                                                                                                                                        |
+| dpkg-reconfigure tzdata         | Time zone settings                                                                                                                                                       |
+| kill -(6\|9\|15\|18\|19) <PID\> | 6: SIGABRT - Cancel process<br>9: SIGKILL - Terminate process<br>15: SIGTERM - terminate process cleanly<br>18: SIGCONT - Continue process<br>19: SIGSTOP - Stop process |
+| mount -o remount -rw /          | release read-only file system                                                                                                                                            |
+| ps                              | process list                                                                                                                                                             |
+| ps -aux                         | detailed process list                                                                                                                                                    |
+| sh file.sh                      | Shell file execute                                                                                                                                                       |
 
-### Network Management
-
-| Command | Comment |
-|----|----|
-| ifconfig | Display IP address and netmask |
-| netstat -pantu | Connections/Ports |
-| nload -u H | Display bandwidth |
-| sh blubb.sh | sh file executen |
-| wget <http://www.psoft.net/shiv/HS/u-web-my4.tgz> | gets file |
-
-### shutdown options
+### 5.1 Shutdown Options
 
 | Command        | Comment                 |
-|----------------|-------------------------|
+| -------------- | ----------------------- |
 | shutdown -s    | Shut down or switch off |
 | shutdown -r    | Restart (reboot)        |
 | shutdown -l    | User logout             |
 | shutdown -s -f | Forced shutdown         |
 
-## change system time
+### 5.2 Change System Time
 
 Set the time under Linux. [^2]
 
-### show time
-
+###### Show time
 ``` bash
 timedatectl
 ```
 
-### change time
+#### Change time
 
-Set time zone manually
-
+###### Set time zone manually
 ``` bash
 sudo timedatectl set-timezone Europe/Berlin
 ```
 
-Select time zone
-
+###### Select time zone with assistance
 ``` bash
 sudo dpkg-reconfigure tzdata
 ```
 
-## Load Apache modules
+## 6.0 Network Management
 
+| Command                                           | Comment                        |
+| ------------------------------------------------- | ------------------------------ |
+| ifconfig                                          | Display IP address and netmask |
+| netstat -pantu                                    | Connections/Ports              |
+| nload -u H                                        | Display bandwidth              |
+| wget <http://www.psoft.net/shiv/HS/u-web-my4.tgz> | gets file                      |
+
+## 7.0 Apache modules
+
+###### Enable Module
 ``` bash
 a2enmod modname
 ```
 
-
-
+###### Disable Module
 ``` bash
 a2dismod modname
 ```
 
-
-
+###### Restart Apache
 ``` bash
-/etc/init.d/apache2 restart
+service apache2 restart
 ```
 
+----
 ## References
 
 
