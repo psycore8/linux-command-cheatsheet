@@ -26,6 +26,8 @@
 | du -h \* \| sort -hr \> /home/user/filelist.txt | File list sorted by size                      |
 | echo bla \> 1.txt                               | Create file 1.txt with content bla            |
 | echo blabla \>\> 1.txt                          | Append blabla to file 1.txt                   |
+| `find /directory -type d -exec chmod 755 {} \;` | Set permissions for folder recursive          |
+| `find /directory -type f -exec chmod 644 {} \;` | Set permissions for files recursive           |
 | ls                                              | List directory contents                       |
 | ls -la dir                                      | List directory contents with user information |
 | ls -lahS $(find / -type f -size +100000k)       | search for files \> 100MB                     |
@@ -128,8 +130,8 @@ sudo dpkg-reconfigure tzdata
 
 | Command                                           | Comment                        |
 | ------------------------------------------------- | ------------------------------ |
-| ifconfig                                          | Display IP address and netmask |
-| netstat -pantu                                    | Connections/Ports              |
+| ip address                                        | Display IP address and netmask |
+| ss -lpt                                           | Connections/Ports              |
 | nload -u H                                        | Display bandwidth              |
 | wget <http://www.psoft.net/shiv/HS/u-web-my4.tgz> | gets file                      |
 
